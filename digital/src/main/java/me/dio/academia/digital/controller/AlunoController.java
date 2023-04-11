@@ -4,7 +4,6 @@ import me.dio.academia.digital.entity.Aluno;
 import me.dio.academia.digital.entity.AvaliacaoFisica;
 import me.dio.academia.digital.entity.form.AlunoForm;
 import me.dio.academia.digital.entity.form.AlunoUpdateForm;
-import me.dio.academia.digital.service.AlunoService;
 import me.dio.academia.digital.service.impl.AlunoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,20 +26,20 @@ public class AlunoController {
         return service.create(form);
     }
 
-    @GetMapping("/alunos/{id}")
-    public Aluno getById(@PathVariable Long id){
-        return service.getById(id);
+    @GetMapping("/{id}")
+    public Aluno get(@PathVariable Long id){
+        return service.get(id);
     }
     @GetMapping("/avaliacoes/{id}")
     public List<AvaliacaoFisica> getAllAvaliacaoFisica(@PathVariable Long id){
         return service.getAllAvaliacaoFisica(id);
     }
-    @PutMapping("/alunos/{id}")
-    public Aluno update(@PathVariable Long id,@RequestBody AlunoUpdateForm form){
-        return service.update(id,form);
+    @PutMapping(value = "/{id}")
+    public Aluno updateAluno(@PathVariable Long id,@RequestBody AlunoUpdateForm form){
+        return service.update(id, form);
     }
-    @DeleteMapping("/alunos/{id}")
-    public void delete(@PathVariable Long id){
+    @DeleteMapping(value = "/{id}")
+    public void deleteAluno(@PathVariable Long id){
         service.delete(id);
     }
 

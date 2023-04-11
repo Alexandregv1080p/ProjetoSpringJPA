@@ -21,7 +21,7 @@ public interface AlunoService {
     @param id - id do aluno que sera exibido
     @return - aluno de acordo com o id fornecudi
      */
-    Aluno getById(Long id);
+    Aluno get(Long id);
 
     /*
     Retorna todos os alunos que estao dentro do banco de dados

@@ -19,7 +19,7 @@ public interface AvaliacaoFisicaService {
     @param id - id do aluno que sera exibido
     @return - aluno de acordo com o id fornecudi
      */
-    AvaliacaoFisica get(AvaliacaoFisicaForm form);
+    AvaliacaoFisica get(Long id);
 
     /*
     Retorna todos os alunos que estao dentro do banco de dados

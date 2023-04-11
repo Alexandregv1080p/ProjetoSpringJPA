@@ -6,13 +6,16 @@ import me.dio.academia.digital.entity.form.AlunoForm;
 import me.dio.academia.digital.entity.form.AlunoUpdateForm;
 import me.dio.academia.digital.repository.AlunoRepository;
 import me.dio.academia.digital.service.AlunoService;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 //Aqui ficara toda a lógica
 @Service
+@RestController
 public class AlunoServiceImpl implements AlunoService {
     @Autowired
     private AlunoRepository repository; //
@@ -22,14 +25,14 @@ public class AlunoServiceImpl implements AlunoService {
         aluno.setNome(form.getNome());
         aluno.setCpf(form.getCpf());
         aluno.setBairro(form.getBairro());
-        aluno.setDataNascimento(form.getDataDeNascimento());
+        aluno.setDataDeNascimento(form.getDataDeNascimento());
 
         return repository.save(aluno);
     }
 
     @Override
-    public Aluno getById(Long id) {
-        return repository.findById(id).get();
+    public Aluno get(Long id) {
+        return repository.getReferenceById(id);
     }
 
     @Override
@@ -39,11 +42,14 @@ public class AlunoServiceImpl implements AlunoService {
 
     @Override
     public Aluno update(Long id, AlunoUpdateForm formUpdate) {
-        Aluno aluno = repository.findById(id).get();
-        formUpdate.setNome(aluno.getNome());
-        formUpdate.setBairro(aluno.getBairro());
-        formUpdate.setDateNascimento(aluno.getDataNascimento());
+
+        Aluno aluno = repository.getReferenceById(id);
+        aluno.setNome(formUpdate.getNome());
+        aluno.setBairro(formUpdate.getBairro());
+        aluno.setDataDeNascimento(formUpdate.getDataDeNascimento());
+
         return repository.save(aluno);
+
     }
 
     @Override
@@ -56,5 +62,4 @@ public class AlunoServiceImpl implements AlunoService {
         Aluno aluno = repository.findById(id).get();
         return aluno.getAvalicoes();
     }
-
 }

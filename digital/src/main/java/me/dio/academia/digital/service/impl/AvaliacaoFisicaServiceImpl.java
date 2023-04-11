@@ -30,8 +30,8 @@ public class AvaliacaoFisicaServiceImpl implements AvaliacaoFisicaService {
     }
 
     @Override
-    public AvaliacaoFisica get(AvaliacaoFisicaForm form) {
-        return null;
+    public AvaliacaoFisica get(Long id) {
+        return avaliacaoFisicaRepository.getReferenceById(id);
     }
 
     @Override

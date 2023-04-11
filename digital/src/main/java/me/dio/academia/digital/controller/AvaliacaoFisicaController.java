@@ -24,4 +24,8 @@ public class AvaliacaoFisicaController {
     public AvaliacaoFisica create(@RequestBody AvaliacaoFisicaForm form){
         return service.create(form);
     }
+    @GetMapping("/{id}")
+    public AvaliacaoFisica get(@RequestParam(value = "id", required = true) Long id){
+        return service.get(id);
+    }
 }

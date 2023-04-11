@@ -3,15 +3,16 @@ package me.dio.academia.digital.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,9 +32,11 @@ public class Aluno {
 
     private String bairro;
 
-    private LocalDate dataNascimento;
+    private LocalDate dataDeNascimento;
 
-    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "aluno",cascade= CascadeType.REMOVE ,fetch = FetchType.LAZY)
     @JsonIgnore
     private List <AvaliacaoFisica> avalicoes = new ArrayList<>();
+
+
 }
